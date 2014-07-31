@@ -11,6 +11,9 @@ RUN /build/redis.sh
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ADD coinos.conf /etc/nginx/sites-enabled/coinos.conf
+RUN mkdir /etc/nginx/ssl
+ADD coinos.io.chained.crt /etc/nginx/ssl/coinos.io.chained.crt
+ADD coinos.io.key /etc/nginx/ssl/coinos.io.key
 RUN git clone https://github.com/thebitcoincoop/coinos /home/app/coinos
 
 RUN rm -f /etc/service/nginx/down
